@@ -1,0 +1,43 @@
+name: Publish Smart Electricity Calculator
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build web version
+        run: flutter build web --release --base-href /electricity-calculator/
+      - name: Disable Jekyll processing
+        run: touch build/web/.nojekyll
+      - name: Prepare Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/web
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
