@@ -8,7 +8,7 @@
 - **Апп:** https://bilgee80977053-oss.github.io/electricity-calculator/
 - **Эх код:** https://github.com/bilgee80977053-oss/electricity-calculator
 - **Тайлан:** [Lab_Report.md](Lab_Report.md)
-- **Animation тайлбар:** [README.md — Лекц №13](../README.md#5-лекц-13--animation-ийн-хэрэгжилт)
+- **Animation тайлбар:** [README.md — Лекц №13](../README.md)
 
 ## Үзүүлэх дараалал
 
